@@ -1,13 +1,12 @@
-<script setup></script>
+<script setup>
+import TheHeader from './components/TheHeader.vue'
+import TheNav from './components/TheNav.vue'
+</script>
 
 <template>
-  <h1 class="text-3xl font-bold text-red-500">Hello Tailwind</h1>
+  <TheHeader />
 
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <main class="flex flex-grow flex-col"></main>
+
+  <TheNav />
 </template>
-
-<style scoped></style>
