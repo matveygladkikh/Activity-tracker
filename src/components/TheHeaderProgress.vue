@@ -5,7 +5,7 @@ import { PAGE_PROGRESS } from '@/constants'
 const emit = defineEmits(['goToProgress'])
 
 function handleClick() {
-  emit('click')
+  emit('goToProgress')
 }
 </script>
 

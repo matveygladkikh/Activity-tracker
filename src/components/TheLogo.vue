@@ -4,7 +4,7 @@ import { PAGE_TIMELINE } from '../constants'
 const emit = defineEmits(['goToTimeline'])
 
 function handleClick() {
-  emit('click')
+  emit('goToTimeline')
 }
 </script>
 
