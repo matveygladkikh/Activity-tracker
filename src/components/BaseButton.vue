@@ -1,8 +1,9 @@
 <script>
-import { BUTTON_TYPE_DANGER, BUTTON_TYPE_NEUTRAL } from '@/constants'
+import { BUTTON_TYPE_DANGER, BUTTON_TYPE_NEUTRAL, BUTTON_TYPE_PRIMARY } from '@/constants'
 
 const typeClasses = {
   [BUTTON_TYPE_DANGER]: 'text-white bg-red-500 enabled:hover:bg-red-600 ',
+  [BUTTON_TYPE_PRIMARY]: 'text-white bg-purple-500 enabled:hover:bg-purple-600 ',
   [BUTTON_TYPE_NEUTRAL]: 'bg-gray-100 enabled:hover:bg-gray-200 ',
 }
 </script>
@@ -12,7 +13,7 @@ import { isButtonTypeValid } from '@/validators'
 
 defineProps({
   type: {
-    default: BUTTON_TYPE_NEUTRAL,
+    default: BUTTON_TYPE_PRIMARY,
     type: String,
     validator: isButtonTypeValid,
   },
