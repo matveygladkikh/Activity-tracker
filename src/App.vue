@@ -10,7 +10,7 @@ import {
   generateActivitySelectOptions,
   generateActivities,
 } from './functions'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constants'
 
 const currentPage = ref(normalizePageHash())
@@ -19,7 +19,7 @@ const timelineItems = generateTimelineItems()
 
 const activities = ref(generateActivities())
 
-const activitySelectOptions = generateActivitySelectOptions(activities.value)
+const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
 function goTo(page) {
   currentPage.value = page

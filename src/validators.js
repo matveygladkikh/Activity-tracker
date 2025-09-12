@@ -28,16 +28,20 @@ export function isUndefined(value) {
   return value === undefined
 }
 
+export function isNull(value) {
+  return value === null
+}
+
+export function isSelectValueValid(value) {
+  return isNotEmptyString(value) || isNumberOrNull(value)
+}
+
 export function isNumberOrNull(value) {
   return isNumber(value) || isNull(value)
 }
 
 export function isHourValid(hour) {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
-}
-
-function isSelectOptionValid({ value, label }) {
-  return isNumber(value) || (isNotEmptyString(value) && isNotEmptyString(label))
 }
 
 export function validateActivities(activities) {
@@ -48,16 +52,16 @@ export function isActivityValid({ id, name, secondsToComplete }) {
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
+function isSelectOptionValid({ value, label }) {
+  return isNumber(value) || (isNotEmptyString(value) && isNotEmptyString(label))
+}
+
 function isNotEmptyString(value) {
   return isString(value) && value.length > 0
 }
 
 function isBetween(value, start, end) {
   return value >= start && value <= end
-}
-
-function isNull(value) {
-  return value === null
 }
 
 function isNumber(value) {

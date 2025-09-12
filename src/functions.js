@@ -1,4 +1,4 @@
-import { isPageValid } from './validators'
+import { isPageValid, isNull } from './validators'
 import { PAGE_TIMELINE, HOURS_IN_DAY, MIDNIGHT_HOUR, SECONDS_IN_HOUR } from './constants'
 
 export function normalizePageHash() {
@@ -11,6 +11,10 @@ export function normalizePageHash() {
 
     return PAGE_TIMELINE
   }
+}
+
+export function normalizeSelectValue(value) {
+  return isNull(value) || isNaN(value) ? value : +value
 }
 
 export function generateActivities() {
@@ -35,5 +39,5 @@ export function generateActivitySelectOptions(activities) {
 }
 
 export function id() {
-  return Date.now().toString(36) + Math.random.toString(36).substring(2)
+  return Date.now().toString(36) + Math.random().toString(36).substring(2)
 }
