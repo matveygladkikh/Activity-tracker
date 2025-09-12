@@ -10,6 +10,6 @@ function handleClick() {
 
 <template>
   <a :href="`#${PAGE_TIMELINE}`" @click.prevent="handleClick">
-    <img src="../assets/img/logo.png" alt="Logo" class="h-9" />
+    <img src="../assets/images/logo.png" alt="Logo" class="h-9" />
   </a>
 </template>
