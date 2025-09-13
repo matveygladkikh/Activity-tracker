@@ -1,5 +1,5 @@
 <script setup>
-import { isActivityValid, validateActivities } from '@/validators'
+import { isActivityValid, isNumber, validateActivities } from '@/validators'
 import ActivityItem from '@/components/ActivityItem.vue'
 import TheActivityForm from '@/components/TheActivityForm.vue'
 import TheActivitiesEmptyState from '@/components/TheActivitiesEmptyState.vue'
@@ -12,7 +12,17 @@ defineProps({
   },
 })
 
-const emit = defineEmits({ createActivity: isActivityValid, deleteActivity: isActivityValid })
+const emit = defineEmits({
+  createActivity: isActivityValid,
+  deleteActivity: isActivityValid,
+  setActivitySecondsToComplete(activity, secondsToComplete) {
+    return [isActivityValid(activity), isNumber(secondsToComplete)].every(Boolean)
+  },
+})
+
+function setSecondsToComplete(activity, secondsToComplete) {
+  emit('setActivitySecondsToComplete', activity, secondsToComplete)
+}
 </script>
 
 <template>
@@ -23,6 +33,7 @@ const emit = defineEmits({ createActivity: isActivityValid, deleteActivity: isAc
         :key="activity.id"
         :activity="activity"
         @delete="emit('deleteActivity', activity)"
+        @set-seconds-to-complete="setSecondsToComplete(activity, $event)"
       />
     </ul>
 

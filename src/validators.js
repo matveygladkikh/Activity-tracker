@@ -40,6 +40,10 @@ export function isNumberOrNull(value) {
   return isNumber(value) || isNull(value)
 }
 
+export function isNumber(value) {
+  return typeof value === 'number'
+}
+
 export function isHourValid(hour) {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
 }
@@ -62,10 +66,6 @@ function isNotEmptyString(value) {
 
 function isBetween(value, start, end) {
   return value >= start && value <= end
-}
-
-function isNumber(value) {
-  return typeof value === 'number'
 }
 
 function isString(value) {
