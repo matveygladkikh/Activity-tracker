@@ -30,7 +30,16 @@ function createActivity(activity) {
 }
 
 function deleteActivity(activity) {
+  timelineItems.forEach((timelineItem) => {
+    if (timelineItem.activityId === activity.id) {
+      timelineItem.activityId === null
+    }
+  })
   activities.value.splice(activities.value.indexOf(activity), 1)
+}
+
+function setTimelineItemActivity({ timelineItem, activity }) {
+  timelineItem.activityId = activity.id
 }
 </script>
 
@@ -41,7 +50,9 @@ function deleteActivity(activity) {
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
+      :activities="activities"
       :activity-select-options="activitySelectOptions"
+      @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
