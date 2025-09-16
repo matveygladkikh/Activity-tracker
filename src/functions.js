@@ -6,6 +6,7 @@ import {
   SECONDS_IN_HOUR,
   SECONDS_IN_MINUTE,
   MINUTES_IN_HOUR,
+  MILLISECONDS_IN_SECOND,
 } from './constants'
 
 export function normalizePageHash() {
@@ -18,6 +19,16 @@ export function normalizePageHash() {
 
     return PAGE_TIMELINE
   }
+}
+
+export function formatSeconds(seconds) {
+  const data = new Date()
+
+  data.setTime(Math.abs(seconds) * MILLISECONDS_IN_SECOND)
+
+  const utc = data.toUTCString()
+
+  return utc.substring(utc.indexOf(':') - 2, utc.indexOf('G') - 1)
 }
 
 export function normalizeSelectValue(value) {
@@ -35,7 +46,7 @@ export function generateActivities() {
 export function generateTimelineItems() {
   const timelineItems = []
   for (let hour = MIDNIGHT_HOUR; hour < HOURS_IN_DAY; hour++) {
-    timelineItems.push({ hour, activityId: null })
+    timelineItems.push({ hour, activityId: null, activitySeconds: 0 })
   }
 
   return timelineItems
