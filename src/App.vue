@@ -19,9 +19,19 @@ const activities = ref(generateActivities())
 
 const timelineItems = ref(generateTimelineItems(activities.value))
 
+const timeline = ref()
+
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
 function goTo(page) {
+  if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
+    timeline.value.scrollToHour()
+  }
+
+  if (page !== PAGE_TIMELINE) {
+    document.body.scrollIntoView()
+  }
+
   currentPage.value = page
 }
 
@@ -54,6 +64,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
   <main class="flex flex-grow flex-col">
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
+      ref="timeline"
       :timeline-items="timelineItems"
       :activities="activities"
       :activity-select-options="activitySelectOptions"
