@@ -9,11 +9,10 @@ import {
   generateTimelineItems,
   generateActivitySelectOptions,
   generateActivities,
+  generatePeriodSelectOptions,
 } from './functions'
 import { ref, computed, provide } from 'vue'
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constants'
-
-provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 
 const currentPage = ref(normalizePageHash())
 
@@ -62,6 +61,12 @@ function setTimelineItemActivity(timelineItem, activity) {
 function setActivitySecondsToComplete(activity, secondsToComplete) {
   activity.secondsToComplete = secondsToComplete
 }
+
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('activitySelectOptions', activitySelectOptions.value)
+provide('periodSelectOptions', generatePeriodSelectOptions())
+provide('timelineItems', timelineItems.value)
+provide('activities', activities.value)
 </script>
 
 <template>
@@ -72,15 +77,12 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       v-show="currentPage === PAGE_TIMELINE"
       ref="timeline"
       :timeline-items="timelineItems"
-      :activities="activities"
-      :activity-select-options="activitySelectOptions"
       :current-page="currentPage"
       @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
-      :timeline-items="timelineItems"
       @create-activity="createActivity"
       @delete-activity="deleteActivity"
       @set-activity-seconds-to-complete="setActivitySecondsToComplete"

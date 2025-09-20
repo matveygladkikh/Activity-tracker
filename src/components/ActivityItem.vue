@@ -2,9 +2,10 @@
 import BaseButton from './BaseButton.vue'
 import BaseSelect from './BaseSelect.vue'
 import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
-import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '@/constants'
+import { BUTTON_TYPE_DANGER } from '@/constants'
 import { TrashIcon } from '@heroicons/vue/24/outline'
-import { isActivityValid, isNumber, isUndefined, validateTimelineItems } from '@/validators'
+import { isActivityValid, isNumber, isUndefined } from '@/validators'
+import { inject } from 'vue'
 
 const props = defineProps({
   activity: {
@@ -12,17 +13,14 @@ const props = defineProps({
     type: Object,
     validator: isActivityValid,
   },
-  timelineItems: {
-    type: Array,
-    required: true,
-    validator: validateTimelineItems,
-  },
 })
 
 const emit = defineEmits({
   setSecondsToComplete: isNumber,
   delete: isUndefined,
 })
+
+const periodSelectOptions = inject('periodSelectOptions')
 </script>
 
 <template>
@@ -37,16 +35,12 @@ const emit = defineEmits({
       <BaseSelect
         class="grow font-mono"
         placeholder="hh:mm"
-        :options="PERIOD_SELECT_OPTIONS"
+        :options="periodSelectOptions"
         :selected="activity.secondsToComplete || null"
         @select="emit('setSecondsToComplete', $event || 0)"
       ></BaseSelect>
 
-      <ActivitySecondsToComplete
-        v-if="activity.secondsToComplete"
-        :activity="activity"
-        :timeline-items="timelineItems"
-      />
+      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
     </div>
   </li>
 </template>
