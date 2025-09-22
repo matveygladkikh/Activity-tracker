@@ -11,7 +11,7 @@ function handleClick() {
 
 <template>
   <a :href="`#${PAGE_PROGRESS}`" class="text-sm" @click.prevent="handleClick">
-    <div v-if="true" class="flex items-center gap-1">
+    <div v-if="false" class="flex items-center gap-1">
       <CheckCircleIcon class="h-7 text-green-500" />
       <div>Day complete!</div>
     </div>
