@@ -12,6 +12,7 @@ import {
   setTimelineItemActivity,
   updateTimelineItemActivitySeconds,
   timelineItems,
+  resetTimelineItemActivities,
 } from './timelineItems'
 import {
   setActivitySecondsToComplete,
@@ -24,7 +25,10 @@ import * as keys from './keys'
 
 provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
-provide(keys.deleteActivityKey, deleteActivity)
+provide(keys.deleteActivityKey, (activity) => {
+  resetTimelineItemActivities(activity)
+  deleteActivity(activity)
+})
 provide(keys.createActivityKey, createActivity)
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
