@@ -7,6 +7,10 @@ import {
   MILLISECONDS_IN_SECOND,
 } from './constants'
 
+export function currentHour() {
+  return new Date().getHours()
+}
+
 export function formatSeconds(seconds) {
   const data = new Date()
 

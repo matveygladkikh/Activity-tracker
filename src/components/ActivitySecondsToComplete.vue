@@ -15,7 +15,8 @@ const props = defineProps({
 const timelineItems = inject(timelineItemsKey)
 
 const secondsDiff = computed(
-  () => getTotalActivitySeconds(props.activity, timelineItems) - props.activity.secondsToComplete,
+  () =>
+    getTotalActivitySeconds(props.activity, timelineItems.value) - props.activity.secondsToComplete,
 )
 
 const classes = computed(

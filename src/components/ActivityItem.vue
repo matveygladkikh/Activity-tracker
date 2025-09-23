@@ -36,7 +36,7 @@ const deleteActivity = inject(deleteActivityKey)
         placeholder="hh:mm"
         :options="periodSelectOptions"
         :selected="activity.secondsToComplete || null"
-        @select="setActivitySecondsToComplete(activity, $event || 0)"
+        @select="setActivitySecondsToComplete(activity, $event)"
       ></BaseSelect>
 
       <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
