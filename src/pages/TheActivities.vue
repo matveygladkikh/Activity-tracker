@@ -2,15 +2,7 @@
 import ActivityItem from '@/components/ActivityItem.vue'
 import TheActivityForm from '@/components/TheActivityForm.vue'
 import TheActivitiesEmptyState from '@/components/TheActivitiesEmptyState.vue'
-import { validateActivities } from '@/validators'
-
-defineProps({
-  activities: {
-    required: true,
-    type: Array,
-    validator: validateActivities,
-  },
-})
+import { activities } from '@/activities'
 </script>
 
 <template>

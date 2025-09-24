@@ -11,15 +11,13 @@ import { currentPage, timelineRef } from './router'
 import {
   setTimelineItemActivity,
   updateTimelineItemActivitySeconds,
-  timelineItems,
   resetTimelineItemActivities,
-} from './timelineItems'
+} from './timeline-items'
 import {
   setActivitySecondsToComplete,
   activitySelectOptions,
   createActivity,
   deleteActivity,
-  activities,
 } from './activities'
 import * as keys from './keys'
 
@@ -33,19 +31,14 @@ provide(keys.createActivityKey, createActivity)
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
-provide(keys.timelineItemsKey, timelineItems)
 </script>
 
 <template>
   <TheHeader />
 
   <main class="flex flex-grow flex-col">
-    <TheTimeline
-      v-show="currentPage === PAGE_TIMELINE"
-      ref="timelineRef"
-      :timeline-items="timelineItems"
-    />
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
+    <TheTimeline v-show="currentPage === PAGE_TIMELINE" ref="timelineRef" />
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
