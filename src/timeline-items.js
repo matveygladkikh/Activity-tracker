@@ -5,7 +5,7 @@ import { activities } from './activities'
 export const timelineItems = ref(generateTimelineItems())
 
 export function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
-  timelineItem.activitySeconds += activitySeconds
+  timelineItem.activitySeconds = activitySeconds
 }
 
 export function setTimelineItemActivity(timelineItem, activityId) {
