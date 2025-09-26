@@ -1,7 +1,8 @@
 <script setup>
-import { CheckCircleIcon } from '@heroicons/vue/24/solid'
+import BaseIcon from './BaseIcon.vue'
 import { PAGE_PROGRESS } from '@/constants'
 import { navigate } from '@/router'
+import { ICON_CHECK_CIRCLE } from '@/icons'
 
 const emit = defineEmits(['goToProgress'])
 
@@ -18,7 +19,7 @@ function handleClick() {
     @click="navigate(PAGE_PROGRESS)"
   >
     <div v-if="false" class="flex items-center gap-1">
-      <CheckCircleIcon class="h-7 text-green-500" />
+      <BaseIcon :name="ICON_CHECK_CIRCLE" class="h-7 text-green-500" />
       <div>Day complete!</div>
     </div>
 
