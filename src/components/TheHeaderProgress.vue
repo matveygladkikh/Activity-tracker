@@ -18,8 +18,8 @@ function handleClick() {
     @click.prevent="handleClick"
     @click="navigate(PAGE_PROGRESS)"
   >
-    <div v-if="false" class="flex items-center gap-1">
-      <BaseIcon :name="ICON_CHECK_CIRCLE" class="h-7 text-green-500" />
+    <div v-if="true" class="flex items-center gap-1">
+      <BaseIcon :name="ICON_CHECK_CIRCLE" classes="h-7 text-green-500" />
       <div>Day complete!</div>
     </div>
 

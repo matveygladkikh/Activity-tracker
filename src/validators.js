@@ -69,12 +69,12 @@ export function isActivityValid({ id, name, secondsToComplete }) {
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
-function isSelectOptionValid({ value, label }) {
-  return isNumber(value) || (isNotEmptyString(value) && isNotEmptyString(label))
+export function isNotEmptyString(value) {
+  return isString(value) && value.length > 0
 }
 
-function isNotEmptyString(value) {
-  return isString(value) && value.length > 0
+function isSelectOptionValid({ value, label }) {
+  return isNumber(value) || (isNotEmptyString(value) && isNotEmptyString(label))
 }
 
 function isBetween(value, start, end) {

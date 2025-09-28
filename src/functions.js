@@ -1,5 +1,12 @@
 import { isNull } from './validators'
-import { SECONDS_IN_MINUTE, MINUTES_IN_HOUR, MILLISECONDS_IN_SECOND } from './constants'
+import {
+  SECONDS_IN_MINUTE,
+  MINUTES_IN_HOUR,
+  MILLISECONDS_IN_SECOND,
+  LOW_PERCENT,
+  MEDIUM_PERCENT,
+  HUNDRED_PERCENT,
+} from './constants'
 
 export function currentHour() {
   return new Date().getHours()
@@ -30,6 +37,14 @@ export function generatePeriodSelectOptions() {
     value: periodInMinutes * SECONDS_IN_MINUTE,
     label: generatePeriodSelectOptionsLabel(periodInMinutes),
   }))
+}
+
+export function getColorProgressClass(percentage) {
+  if (percentage < LOW_PERCENT) return 'bg-red-500'
+  if (percentage < MEDIUM_PERCENT) return 'bg-yellow-500'
+  if (percentage < HUNDRED_PERCENT) return 'bg-blue-500'
+
+  return 'bg-green-500'
 }
 
 function generatePeriodSelectOptionsLabel(periodInMinutes) {
