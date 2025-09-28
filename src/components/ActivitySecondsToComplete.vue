@@ -2,7 +2,7 @@
 import { formatSeconds } from '@/functions'
 import { isActivityValid } from '@/validators'
 import { computed } from 'vue'
-import { getTotalActivitySeconds } from '@/timeline-items'
+import { calculateTrackedActivitySeconds } from '@/timeline-items'
 
 const props = defineProps({
   activity: {
@@ -13,7 +13,7 @@ const props = defineProps({
 })
 
 const secondsDiff = computed(
-  () => getTotalActivitySeconds(props.activity) - props.activity.secondsToComplete,
+  () => calculateTrackedActivitySeconds(props.activity) - props.activity.secondsToComplete,
 )
 
 const classes = computed(
