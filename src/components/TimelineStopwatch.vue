@@ -38,7 +38,7 @@ watch(
   },
 )
 
-const temp = 120
+const temp = 1
 
 function start() {
   isRunning.value = setInterval(() => {

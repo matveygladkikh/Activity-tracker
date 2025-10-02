@@ -31,7 +31,7 @@ function generateActivitySelectOptions(activities) {
 }
 
 function generateActivities() {
-  return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
+  return ['Coding', 'Reading', 'Training'].map((name) => ({
     id: id(),
     name,
     secondsToComplete: 15 * 60,
