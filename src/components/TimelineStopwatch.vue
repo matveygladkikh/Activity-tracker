@@ -8,10 +8,11 @@ import {
   MILLISECONDS_IN_SECOND,
 } from '@/constants'
 import { isTimelineItemValid } from '@/validators'
-import { currentHour, formatSeconds } from '@/functions'
-import { ref, watch } from 'vue'
+import { formatSeconds } from '@/functions'
+import { ref, watch, watchEffect } from 'vue'
 import { updateTimelineItem } from '@/timeline-items'
 import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '@/icons'
+import { now } from '@/time'
 
 const props = defineProps({
   timelineItem: {
@@ -24,7 +25,11 @@ const props = defineProps({
 const seconds = ref(props.timelineItem.activitySeconds)
 const isRunning = ref(false)
 
-const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
+watchEffect(() => {
+  if (props.timelineItem.hour !== now.value.getHours() && isRunning.value) {
+    stop()
+  }
+})
 
 watch(
   () => props.timelineItem.activityId,
@@ -73,7 +78,11 @@ function reset() {
     <BaseButton v-if="isRunning" :type="BUTTON_TYPE_WARNING" @click="stop"
       ><BaseIcon :name="ICON_PAUSE"
     /></BaseButton>
-    <BaseButton v-else :type="BUTTON_TYPE_SUCCESS" @click="start" :disabled="isStartButtonDisabled"
+    <BaseButton
+      v-else
+      :type="BUTTON_TYPE_SUCCESS"
+      @click="start"
+      :disabled="timelineItem.hour !== now.getHours()"
       ><BaseIcon :name="ICON_PLAY"
     /></BaseButton>
   </div>

@@ -8,10 +8,6 @@ import {
   HUNDRED_PERCENT,
 } from './constants'
 
-export function currentHour() {
-  return new Date().getHours()
-}
-
 export function formatSeconds(seconds) {
   const data = new Date()
 
