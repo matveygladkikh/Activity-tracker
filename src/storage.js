@@ -1,5 +1,5 @@
 import { APP_NAME } from './constants'
-import { today } from './time'
+import { endOfHour, today, toSeconds } from './time'
 import { timelineItems } from './timeline-items'
 import { activities } from './activities'
 import { isToday } from './time'
@@ -10,8 +10,13 @@ export function loadState() {
 
   const state = serializeState ? JSON.parse(serializeState) : {}
 
-  timelineItems.value = isToday(new Date(state.date)) ? state.timelineItems : timelineItems.value
   activities.value = state.activities || activities.value
+
+  const lastActiveAt = new Date(state.lastActiveAt)
+
+  timelineItems.value = isToday(lastActiveAt)
+    ? syncIdleSeconds(state.timelineItems, lastActiveAt)
+    : timelineItems.value
 }
 
 export function saveState() {
@@ -20,7 +25,23 @@ export function saveState() {
     JSON.stringify({
       timelineItems: timelineItems.value,
       activities: activities.value,
-      date: today(),
+      lastActiveAt: today(),
     }),
   )
+}
+
+function syncIdleSeconds(timelineItems, lastActiveAt) {
+  const activeTimelineItem = timelineItems.find(({ isActive }) => isActive)
+
+  if (activeTimelineItem) {
+    activeTimelineItem.activitySeconds += calculateIdleSeconds(lastActiveAt)
+  }
+
+  return timelineItems
+}
+
+function calculateIdleSeconds(lastActiveAt) {
+  return lastActiveAt.getHours() === today().getHours()
+    ? toSeconds(today() - lastActiveAt)
+    : toSeconds(endOfHour(lastActiveAt) - lastActiveAt)
 }

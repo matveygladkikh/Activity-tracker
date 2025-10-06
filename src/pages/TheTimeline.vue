@@ -8,16 +8,16 @@ import {
   scrollToCurrentHour,
   stopTimelineItemTimer,
 } from '@/timeline-items'
-import { startTimer, stopTimer } from '@/time'
+import { startCurrentDateTimer, stopCurrentDateTimer } from '@/time'
 
 stopTimelineItemTimer()
 
 onActivated(() => {
   scrollToCurrentHour()
-  startTimer()
+  startCurrentDateTimer()
 })
 
-onDeactivated(stopTimer)
+onDeactivated(stopCurrentDateTimer)
 </script>
 
 <template>
