@@ -1,10 +1,14 @@
-import { HOURS_IN_DAY, MIDNIGHT_HOUR, MILLISECONDS_IN_SECOND } from './constants'
-import { ref, watchEffect, computed } from 'vue'
+import { HOURS_IN_DAY, MIDNIGHT_HOUR } from './constants'
+import { ref, computed } from 'vue'
 import { now } from './time'
 
 export const timelineItems = ref(generateTimelineItems())
 
 export const timelineItemRefs = ref([])
+
+export const activeTimelineItem = computed(() =>
+  timelineItems.value.find(({ isActive }) => isActive),
+)
 
 export function updateTimelineItem(timelineItem, fields) {
   return Object.assign(timelineItem, fields)
@@ -36,47 +40,12 @@ export function calculateTrackedActivitySeconds(activity) {
     .reduce((total, seconds) => Math.round(total + seconds), 0)
 }
 
-let timelineItemTimer = ref(false)
-
-export function startTimelineItemTimer(timelineItem) {
-  updateTimelineItem(timelineItem, {
-    isActive: true,
-  })
-
-  timelineItemTimer.value = setInterval(() => {
-    updateTimelineItem(timelineItem, {
-      activitySeconds: timelineItem.activitySeconds + 1,
-    })
-  }, MILLISECONDS_IN_SECOND)
-}
-export function stopTimelineItemTimer(timelineItem) {
-  updateTimelineItem(timelineItem, {
+export function resetTimelineItems(timelineItems) {
+  return timelineItems.map((timelineItem) => ({
+    ...timelineItem,
+    activitySeconds: 0,
     isActive: false,
-  })
-
-  clearInterval(timelineItemTimer.value)
-
-  timelineItemTimer.value = false
-}
-
-export function resetTimelineItemTimer(timelineItem) {
-  updateTimelineItem(timelineItem, { activitySeconds: 0 })
-
-  stopTimelineItemTimer(timelineItem)
-}
-
-export const activeTimelineItem = computed(() =>
-  timelineItems.value.find(({ isActive }) => isActive),
-)
-
-watchEffect(() => {
-  if (activeTimelineItem.value && activeTimelineItem.value.hour !== now.value.getHours()) {
-    stopTimelineItemTimer(activeTimelineItem.value)
-  }
-})
-
-export function findActiveTimelineItem() {
-  return timelineItems.value.find(({ isActive }) => isActive)
+  }))
 }
 
 function filterTimelineItemsByActivity({ id }) {
