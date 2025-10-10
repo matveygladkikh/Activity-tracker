@@ -37,7 +37,7 @@ defineProps({
     <BaseButton
       v-if="timelineItem === activeTimelineItem"
       :type="BUTTON_TYPE_WARNING"
-      @click="stopTimelineItemTimer(timelineItem)"
+      @click="stopTimelineItemTimer"
       ><BaseIcon :name="ICON_PAUSE"
     /></BaseButton>
     <BaseButton
