@@ -7,7 +7,7 @@ import { BUTTON_TYPE_DANGER } from '@/constants'
 import { isActivityValid } from '@/validators'
 import { PERIOD_SELECT_OPTIONS } from '@/constants'
 import { updateActivity, deleteActivity } from '@/activities'
-import { resetTimelineItemActivities, timelineItems } from '@/timeline-items'
+import { resetTimelineItemActivities } from '@/timeline-items'
 import { ICON_TRASH } from '@/icons'
 
 const props = defineProps({
@@ -19,7 +19,7 @@ const props = defineProps({
 })
 
 function deleteAndResetActivity(activity) {
-  resetTimelineItemActivities(timelineItems.value, activity)
+  resetTimelineItemActivities(activity)
   deleteActivity(activity)
 }
 </script>

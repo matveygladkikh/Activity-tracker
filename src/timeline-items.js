@@ -1,7 +1,7 @@
 import { HOURS_IN_DAY, MIDNIGHT_HOUR } from './constants'
-import { ref, computed } from 'vue'
-import { endOfHour, today, toSeconds } from './time'
-import { isToday } from './time'
+import { ref, computed, watch } from 'vue'
+import { endOfHour, today, toSeconds, isToday, now } from './time'
+import { stopTimelineItemTimer } from './timeline-item-timer'
 
 export const timelineItems = ref([])
 
@@ -10,6 +10,16 @@ export const timelineItemRefs = ref([])
 export const activeTimelineItem = computed(() =>
   timelineItems.value.find(({ isActive }) => isActive),
 )
+
+watch(now, (after, before) => {
+  if (activeTimelineItem.value && activeTimelineItem.value.hour !== after.getHours()) {
+    stopTimelineItemTimer()
+  }
+
+  if (before.getHours !== after.getHours() && after.getHours() === MIDNIGHT_HOUR) {
+    resetTimelineItems()
+  }
+})
 
 export function initializeTimelineItems(state) {
   const lastActiveAt = new Date(state.lastActiveAt)
@@ -27,8 +37,8 @@ export function updateTimelineItem(timelineItem, fields) {
   return Object.assign(timelineItem, fields)
 }
 
-export function resetTimelineItemActivities(timelineItem, activity) {
-  filterTimelineItemsByActivity(timelineItem, activity).forEach((timelineItem) =>
+export function resetTimelineItemActivities(activity) {
+  filterTimelineItemsByActivity(activity).forEach((timelineItem) =>
     updateTimelineItem(timelineItem, {
       activityId: null,
       activitySeconds: timelineItem.hour === today().getHours() ? timelineItem.activitySeconds : 0,
