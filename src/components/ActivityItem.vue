@@ -3,12 +3,12 @@ import BaseButton from './BaseButton.vue'
 import BaseSelect from './BaseSelect.vue'
 import BaseIcon from './BaseIcon.vue'
 import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
-import { BUTTON_TYPE_DANGER } from '@/constants'
+import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '@/constants'
 import { isActivityValid } from '@/validators'
-import { PERIOD_SELECT_OPTIONS } from '@/constants'
 import { updateActivity, deleteActivity } from '@/activities'
-import { resetTimelineItemActivities } from '@/timeline-items'
+import { timelineItems, resetTimelineItemActivities } from '@/timeline-items'
 import { ICON_TRASH } from '@/icons'
+import { stopTimelineItemTimer } from '@/timeline-item-timer'
 
 const props = defineProps({
   activity: {
@@ -19,7 +19,8 @@ const props = defineProps({
 })
 
 function deleteAndResetActivity(activity) {
-  resetTimelineItemActivities(activity)
+  resetTimelineItemActivities(timelineItems.value, activity)
+  stopTimelineItemTimer()
   deleteActivity(activity)
 }
 </script>

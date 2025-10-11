@@ -10,7 +10,6 @@ import {
   startTimelineItemTimer,
 } from '@/timeline-item-timer'
 import { activeTimelineItem } from '@/timeline-items'
-
 import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '@/icons'
 import { now } from '@/time'
 

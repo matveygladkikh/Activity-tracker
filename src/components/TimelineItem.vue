@@ -20,7 +20,12 @@ defineProps({
     <TimelineHour :hour="timelineItem.hour" />
     <BaseSelect
       :options="activitySelectOptions"
-      :selected="timelineItem.activityId"
+      :selected="
+        timelineItem.activityId &&
+        activitySelectOptions.find((option) => option.value === timelineItem.activityId)
+          ? timelineItem.activityId
+          : null
+      "
       placeholder="Rest"
       @select="updateTimelineItem(timelineItem, { activityId: $event })"
     />
