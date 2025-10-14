@@ -6,7 +6,7 @@ import { calculateTrackedActivitySeconds, timelineItems } from '@/timeline-items
 
 const props = defineProps({
   activity: {
-    require: true,
+    required: true,
     type: Object,
     validator: isActivityValid,
   },

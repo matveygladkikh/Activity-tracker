@@ -12,7 +12,7 @@ import { stopTimelineItemTimer } from '@/timeline-item-timer'
 
 const props = defineProps({
   activity: {
-    require: true,
+    required: true,
     type: Object,
     validator: isActivityValid,
   },
