@@ -34,7 +34,9 @@ export function initializeTimelineItems(state) {
 }
 
 export function updateTimelineItem(timelineItem, fields) {
-  return Object.assign(timelineItem, fields)
+  if (timelineItem) {
+    return Object.assign(timelineItem, fields)
+  }
 }
 
 export function resetTimelineItemActivities(timelineItems, activity) {
