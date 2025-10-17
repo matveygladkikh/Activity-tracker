@@ -2,7 +2,7 @@
 import BaseButton from './BaseButton.vue'
 import BaseSelect from './BaseSelect.vue'
 import BaseIcon from './BaseIcon.vue'
-import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
+import RemainingActivitySeconds from './RemainingActivitySeconds.vue'
 import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '@/constants'
 import { isActivityValid } from '@/validators'
 import { updateActivity, deleteActivity } from '@/activities'
@@ -42,7 +42,7 @@ function deleteAndResetActivity(activity) {
         @select="updateActivity(activity, { secondsToComplete: $event || 0 })"
       ></BaseSelect>
 
-      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
+      <RemainingActivitySeconds v-if="activity.secondsToComplete" :activity="activity" />
     </div>
   </li>
 </template>
