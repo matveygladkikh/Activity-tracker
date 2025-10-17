@@ -1,4 +1,4 @@
-import { APP_NAME } from './constants'
+import { LOCAL_STORAGE_KEY } from './constants'
 import { today } from './time'
 import { activeTimelineItem, timelineItems, initializeTimelineItems } from './timeline-items'
 import { activities, initializeActivities } from './activities'
@@ -21,12 +21,12 @@ function loadState() {
 }
 
 function loadFromLocalStorage() {
-  return JSON.parse(localStorage.getItem(APP_NAME) ?? '{}')
+  return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) ?? '{}')
 }
 
 function saveState() {
   localStorage.setItem(
-    APP_NAME,
+    LOCAL_STORAGE_KEY,
     JSON.stringify({
       timelineItems: timelineItems.value,
       activities: activities.value,
