@@ -4,10 +4,6 @@ import { createApp } from 'vue'
 import { syncState } from './storage'
 import { startCurrentDateTimer } from './time'
 
-function greet(name) {
-  console.log('Hello' + name)
-}
-
 syncState()
 
 startCurrentDateTimer()

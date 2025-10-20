@@ -7,18 +7,7 @@ import {
   MEDIUM_PERCENT,
   HUNDRED_PERCENT,
 } from './constants'
-
-enum ProgressColorClass {
-  RED = 'bg-red-500',
-  YELLOW = 'bg-yellow-500',
-  BLUE = 'bg-blue-500',
-  GREEN = 'bg-green-500',
-}
-
-interface PeriodSelectOption {
-  value: number
-  label: string
-}
+import { type SelectOptions, ProgressColorClass } from './types'
 
 export function formatSecondsWithSign(seconds: number): string {
   return `${seconds >= 0 ? '+' : '-'}${formatSeconds(seconds)}`
@@ -50,11 +39,11 @@ export function getColorProgressClass(percentage: number): ProgressColorClass {
   return ProgressColorClass.GREEN
 }
 
-export function generatePeriodSelectOptions(): PeriodSelectOption[] {
+export function generatePeriodSelectOptions(): SelectOptions<number>[] {
   const periodsInMinutes = [15, 30, 45, 60, 90, 120, 150, 180, 210, 240]
 
   return periodsInMinutes.map(
-    (periodInMinutes): PeriodSelectOption => ({
+    (periodInMinutes): SelectOptions<number> => ({
       value: periodInMinutes * SECONDS_IN_MINUTE,
       label: generatePeriodSelectOptionsLabel(periodInMinutes),
     }),
