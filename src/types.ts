@@ -20,7 +20,7 @@ export type ButtonType =
 
 export interface NavItem {
   page: PageName
-  icon: any
+  icon: string
 }
 
 export interface SelectOptions<T = string> {

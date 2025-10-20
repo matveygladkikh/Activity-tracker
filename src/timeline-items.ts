@@ -36,7 +36,7 @@ export function initializeTimelineItems(state: State): void {
 
 export function updateTimelineItem(
   timelineItem: TimelineItem,
-  fields: any,
+  fields: Partial<TimelineItem>,
 ): TimelineItem | undefined {
   if (timelineItem) {
     return Object.assign(timelineItem, fields)
