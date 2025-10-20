@@ -1,16 +1,6 @@
 import { ref, computed } from 'vue'
 import { HUNDRED_PERCENT } from './constants'
-
-interface Activity {
-  id: string
-  name: string
-  secondsToComplete: number
-}
-
-interface ActivitySelectOptions {
-  value: string
-  label: string
-}
+import type { Activity, ActivitySelectOptions } from './types'
 
 export const activities = ref<Activity[]>([])
 
