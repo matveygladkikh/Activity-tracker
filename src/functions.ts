@@ -22,8 +22,8 @@ export function formatSeconds(seconds: number): string {
   return utc.substring(utc.indexOf(':') - 2, utc.indexOf('G') - 1)
 }
 
-export function normalizeSelectValue(value: any): any {
-  return value === null || isNaN(value) ? value : +value
+export function normalizeSelectValue(value: string | null): string | null | number {
+  return value === null || isNaN(Number(value)) ? value : +value
 }
 
 export function id(): string {

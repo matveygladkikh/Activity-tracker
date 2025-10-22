@@ -1,39 +1,29 @@
 import { generatePeriodSelectOptions } from './functions'
-import { IconName, type NavItem, type ButtonType } from './types'
+import { ButtonType, IconName, type NavItem, PageName } from './types'
 
 export const LOCAL_STORAGE_KEY = 'activity-tracker'
 
-export const PAGE_TIMELINE = 'timeline'
-export const PAGE_ACTIVITIES = 'activities'
-export const PAGE_PROGRESS = 'progress'
-
 export const NAV_ITEMS: NavItem[] = [
   {
-    page: PAGE_TIMELINE,
+    page: PageName.TIMELINE,
     icon: IconName.CLOCK,
   },
   {
-    page: PAGE_ACTIVITIES,
+    page: PageName.ACTIVITIES,
     icon: IconName.LIST_BULLET,
   },
   {
-    page: PAGE_PROGRESS,
+    page: PageName.PROGRESS,
     icon: IconName.CHART_BAR,
   },
 ]
 
-export const BUTTON_TYPE_PRIMARY = 'primary'
-export const BUTTON_TYPE_SUCCESS = 'success'
-export const BUTTON_TYPE_WARNING = 'warning'
-export const BUTTON_TYPE_DANGER = 'danger'
-export const BUTTON_TYPE_NEUTRAL = 'neutral'
-
 export const BUTTON_TYPES: ButtonType[] = [
-  BUTTON_TYPE_PRIMARY,
-  BUTTON_TYPE_DANGER,
-  BUTTON_TYPE_NEUTRAL,
-  BUTTON_TYPE_SUCCESS,
-  BUTTON_TYPE_WARNING,
+  ButtonType.PRIMARY,
+  ButtonType.DANGER,
+  ButtonType.NEUTRAL,
+  ButtonType.SUCCESS,
+  ButtonType.WARNING,
 ]
 
 export const SECONDS_IN_MINUTE = 60

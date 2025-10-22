@@ -1,13 +1,18 @@
 import {
-  PAGE_TIMELINE,
-  PAGE_ACTIVITIES,
-  PAGE_PROGRESS,
   BUTTON_TYPE_PRIMARY,
   BUTTON_TYPE_SUCCESS,
   BUTTON_TYPE_WARNING,
   BUTTON_TYPE_DANGER,
   BUTTON_TYPE_NEUTRAL,
 } from './constants'
+
+export enum ButtonType {
+  PRIMARY = 'primary',
+  DANGER = 'danger',
+  NEUTRAL = 'neutral',
+  SUCCESS = 'success',
+  WARNING = 'warning',
+}
 
 export type Hour =
   | 0
@@ -49,14 +54,11 @@ export enum IconName {
   PLUS = 'Plus',
 }
 
-export type PageName = typeof PAGE_TIMELINE | typeof PAGE_ACTIVITIES | typeof PAGE_PROGRESS
-
-export type ButtonType =
-  | typeof BUTTON_TYPE_PRIMARY
-  | typeof BUTTON_TYPE_DANGER
-  | typeof BUTTON_TYPE_NEUTRAL
-  | typeof BUTTON_TYPE_SUCCESS
-  | typeof BUTTON_TYPE_WARNING
+export enum PageName {
+  TIMELINE = 'timeline',
+  ACTIVITIES = 'activities',
+  PROGRESS = 'progress',
+}
 
 export interface NavItem {
   page: PageName
