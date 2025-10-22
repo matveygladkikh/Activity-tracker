@@ -4,8 +4,7 @@ import BaseIcon from './BaseIcon.vue'
 import { nextTick, ref } from 'vue'
 import { id } from '@/functions'
 import { createActivity } from '@/activities'
-import { ICON_PLUS } from '@/icons'
-
+import { IconName } from '@/types'
 const name = ref('')
 
 async function submit(): Promise<void> {
@@ -32,7 +31,7 @@ async function submit(): Promise<void> {
       placeholder="Activity name"
     />
     <BaseButton :disabled="name.trim() === ''">
-      <BaseIcon :name="ICON_PLUS"></BaseIcon>
+      <BaseIcon :name="IconName.PLUS"></BaseIcon>
     </BaseButton>
   </form>
 </template>

@@ -1,22 +1,17 @@
 <script setup lang="ts" generic="T extends number | string">
 import BaseButton from './BaseButton.vue'
 import BaseIcon from './BaseIcon.vue'
-import { computed } from 'vue'
-import { isUndefinedOrNull } from '@/validators'
 import { BUTTON_TYPE_NEUTRAL } from '@/constants'
 import { normalizeSelectValue } from '@/functions'
-import { ICON_X_MARK } from '@/icons'
-import type { SelectOptions } from '@/types'
+import { type SelectOptions, IconName } from '@/types'
 
-const props = defineProps<{
+defineProps<{
   options: SelectOptions<T>[]
   selected: T | null
   placeholder: string
 }>()
 
 const emit = defineEmits<{ select: [value: T | null] }>()
-
-const isNotSelected = computed((): boolean => isUndefinedOrNull(props.selected))
 
 function select(value: string | null): void {
   emit('select', normalizeSelectValue(value))
@@ -26,14 +21,14 @@ function select(value: string | null): void {
 <template>
   <div class="flex gap-2">
     <BaseButton :type="BUTTON_TYPE_NEUTRAL" @click="select(null)">
-      <BaseIcon :name="ICON_X_MARK" />
+      <BaseIcon :name="IconName.X_MARK" />
     </BaseButton>
 
     <select
       class="w-full truncate rounded bg-gray-100 px-2 py-1 text-2xl"
       @change="select(($event.target as HTMLSelectElement).value)"
     >
-      <option :selected="isNotSelected" disabled value="">
+      <option :selected="selected === null" disabled value="">
         {{ placeholder }}
       </option>
       <option

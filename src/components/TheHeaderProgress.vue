@@ -2,8 +2,8 @@
 import BaseIcon from './BaseIcon.vue'
 import { PAGE_PROGRESS, HUNDRED_PERCENT } from '@/constants'
 import { navigate } from '@/router'
-import { ICON_CHECK_CIRCLE } from '@/icons'
 import { useTotalProgress } from '@/composables/total-progress'
+import { IconName } from '@/types'
 
 const { colorClass, percentage } = useTotalProgress()
 </script>
@@ -18,7 +18,7 @@ const { colorClass, percentage } = useTotalProgress()
     </div>
     <div v-else class="flex items-center gap-1">
       Day complete!
-      <BaseIcon :name="ICON_CHECK_CIRCLE" class="h-7 text-green-500" />
+      <BaseIcon :name="IconName.CHECK_CIRCLE" class="h-7 text-green-500" />
     </div>
   </a>
 </template>
