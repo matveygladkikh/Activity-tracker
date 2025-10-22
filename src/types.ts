@@ -1,11 +1,3 @@
-import {
-  BUTTON_TYPE_PRIMARY,
-  BUTTON_TYPE_SUCCESS,
-  BUTTON_TYPE_WARNING,
-  BUTTON_TYPE_DANGER,
-  BUTTON_TYPE_NEUTRAL,
-} from './constants'
-
 export enum ButtonType {
   PRIMARY = 'primary',
   DANGER = 'danger',

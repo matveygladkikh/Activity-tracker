@@ -17,7 +17,7 @@ watch<Date>(now, (after, before): void => {
     stopTimelineItemTimer()
   }
 
-  if (before.getHours !== after.getHours() && after.getHours() === MIDNIGHT_HOUR) {
+  if (before.getHours() !== after.getHours() && after.getHours() === MIDNIGHT_HOUR) {
     resetTimelineItems()
   }
 })

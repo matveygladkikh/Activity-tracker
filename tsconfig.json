@@ -7,9 +7,10 @@
     "strict": true,
     "noImplicitAny": true,
     "baseUrl": ".",
+    "module": "ESNext",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "vite.config.ts", "env.d.ts"]
 }
