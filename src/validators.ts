@@ -1,4 +1,4 @@
-import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGHT_HOUR } from './constants'
+import { NAV_ITEMS } from './constants'
 import { ICONS } from './icons'
 
 export function isPageValid(page: any): boolean {
@@ -9,10 +9,6 @@ export function isIconValid(icon: any): boolean {
   return Object.keys(ICONS).includes(icon)
 }
 
-export function isTimelineItemValid({ hour }: any): boolean {
-  return isHourValid(hour)
-}
-
 export function isUndefinedOrNull(value: any): boolean {
   return isUndefined(value) || isNull(value)
 }
@@ -21,32 +17,8 @@ export function isNull(value: any): boolean {
   return value === null
 }
 
-export function isHourValid(hour: any): boolean {
-  return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
-}
-
-export function isActivityValid({ id, name, secondsToComplete }: any): boolean {
-  if (isNull(id)) {
-    return true
-  }
-
-  return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
-}
-
-function isNumber(value: any): boolean {
-  return typeof value === 'number'
-}
-
 function isUndefined(value: any): boolean {
   return value === undefined
-}
-
-function isNotEmptyString(value: any): boolean {
-  return isString(value) && value.length > 0
-}
-
-function isBetween(value: any, start: any, end: any): boolean {
-  return value >= start && value <= end
 }
 
 function isString(value: any): boolean {
