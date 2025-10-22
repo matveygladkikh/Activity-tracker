@@ -18,7 +18,7 @@ export function startTimelineItemTimer(timelineItem?: TimelineItem): void {
     if (!timelineItem) return
 
     updateTimelineItem(timelineItem, {
-      activitySeconds: timelineItem.activitySeconds + 30,
+      activitySeconds: timelineItem.activitySeconds + 1,
     })
   }, MILLISECONDS_IN_SECOND)
 }
