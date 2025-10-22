@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import TimelineItem from '@/components/TimelineItem.vue'
 import TheTimelineIndicator from '@/components/TheTimelineIndicator.vue'
 import { onActivated } from 'vue'
