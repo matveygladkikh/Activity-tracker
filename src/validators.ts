@@ -9,16 +9,8 @@ export function isIconValid(icon: any): boolean {
   return Object.keys(ICONS).includes(icon)
 }
 
-export function isNavItemValid(navItem: any): boolean {
-  return NAV_ITEMS.includes(navItem)
-}
-
 export function isTimelineItemValid({ hour }: any): boolean {
   return isHourValid(hour)
-}
-
-export function validateSelectOptions(options: any): boolean {
-  return options.every(isSelectOptionValid)
 }
 
 export function isUndefinedOrNull(value: any): boolean {
@@ -27,10 +19,6 @@ export function isUndefinedOrNull(value: any): boolean {
 
 export function isNull(value: any): boolean {
   return value === null
-}
-
-export function isSelectValueValid(value: any): boolean {
-  return isNotEmptyString(value) || isNumberOrNull(value)
 }
 
 export function isHourValid(hour: any): boolean {
@@ -45,10 +33,6 @@ export function isActivityValid({ id, name, secondsToComplete }: any): boolean {
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
-function isNumberOrNull(value: any): boolean {
-  return isNumber(value) || isNull(value)
-}
-
 function isNumber(value: any): boolean {
   return typeof value === 'number'
 }
@@ -59,10 +43,6 @@ function isUndefined(value: any): boolean {
 
 function isNotEmptyString(value: any): boolean {
   return isString(value) && value.length > 0
-}
-
-function isSelectOptionValid({ value, label }: any): boolean {
-  return isNumber(value) || (isNotEmptyString(value) && isNotEmptyString(label))
 }
 
 function isBetween(value: any, start: any, end: any): boolean {
